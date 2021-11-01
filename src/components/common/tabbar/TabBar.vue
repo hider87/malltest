@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style scoped>
-  @import "~assets/css/base.css";
+  @import "../../../assets/css/base.css";
   #tar-bar {
     display: flex;
     background-color: #f6f6f6;
