@@ -5,27 +5,63 @@
         购物街
       </div>
     </nav-bar>
-    <swiper>
-      <swiper-item v-for="item in banners">
-        <a :href="item.link">
-          <img :src="item.image">
-        </a>
-      </swiper-item>
-    </swiper>
+    <home-swiper :banners="banners"></home-swiper>
+    <recommend-view :recommends="recommends"></recommend-view>
+    <feature-view></feature-view>
+    <tab-control :titles="['流行','新款','精选']"></tab-control>
+    <ul>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+      <li>hhhhhh</li>
+    </ul>
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/common/navbar/NavBar";
+import HomeSwiper from "@/views/home/childComps/HomeSwiper";
+import RecommendView from "@/views/home/childComps/RecommendView";
+import FeatureView from "@/views/home/childComps/FeatureView";
+
+import TabControl from "@/components/content/tabController/TabControl";
+
 import {getHomeMultidata} from "@/network/home";
-import {Swiper,SwiperItem} from "@/components/common/swiper"
 
 export default {
   name: "Home",
   components: {
     NavBar,
-    Swiper,
-    SwiperItem
+    HomeSwiper,
+    RecommendView,
+    FeatureView,
+    TabControl
   },created() {
     // 请求多个数据
     getHomeMultidata().then(res =>{
@@ -44,10 +80,18 @@ export default {
 </script>
 
 <style scoped>
+#home{
+  padding-top: 44px;
+}
 
 .home-nav{
   background-color: var(--color-tint);
   color: #f6f6f6;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9;
 }
 
 </style>
