@@ -8,42 +8,10 @@
     <home-swiper :banners="banners"></home-swiper>
     <recommend-view :recommends="recommends"></recommend-view>
     <feature-view></feature-view>
-    <tab-control class="tab-control" :titles="['流行','新款','精选']"></tab-control>
-    <goods-list :goods="goods['pop'].list">
+    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
+    <goods-list :goods="goods[currentType].list">
 
     </goods-list>
-    <ul>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-      <li>hhhhhh</li>
-    </ul>
   </div>
 </template>
 
@@ -92,6 +60,20 @@ export default {
         this.goods[type].page +=1;
         console.log(this.goods)
       })
+    },
+    tabClick(index){
+      console.log(index);
+      switch (index){
+        case 0:
+          this.currentType = 'pop'
+          break
+        case 1:
+          this.currentType = 'new'
+          break
+        case 2:
+          this.currentType = 'sell'
+          break
+      }
     }
   },
   data(){
@@ -102,7 +84,8 @@ export default {
         'pop': {page:0, list: []},
         'new': {page:0, list: []},
         'sell': {page:0, list: []}
-      }
+      },
+      currentType: 'pop'
     }
   }
 }
@@ -126,6 +109,7 @@ export default {
 .tab-control{
   position: sticky;
   top: 44px;
+  z-index: 9;
 }
 
 </style>

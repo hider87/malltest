@@ -27,6 +27,8 @@ export default {
   .goods-item{
     padding-bottom: 40px;
     position: relative;
+
+    width: 48%;
   }
   .goods-item img{
     width: 100%;
@@ -54,11 +56,12 @@ export default {
     position: relative;
   }
   .goods-info .collect::before{
-    content: ' ';
+    content: '';
     position: absolute;
     left: -15px;
     top: -1px;
     width: 14px;
-    background: url("~assets/img/common/back.svg");
+    height: 14px;
+    background: url("~@/assets/img/common/back.svg");
   }
 </style>

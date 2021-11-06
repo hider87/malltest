@@ -25,5 +25,11 @@ export default {
 </script>
 
 <style scoped>
+  .goods{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
 
 </style>
