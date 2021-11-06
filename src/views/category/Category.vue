@@ -1,13 +1,235 @@
 <template>
-<h2>分类</h2>
+  <div class="wrapper">
+    <ul class="content">
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+      <li>hhhh</li>
+    </ul>
+  </div>
 </template>
 
 <script>
+
+import BScroll from "better-scroll"
+
 export default {
-  name: "Category"
+  name: "Category",
+  mounted() {
+    let wrapper = document.querySelector('.wrapper')
+    let scroll = new BScroll(wrapper,{
+      probeType:3,
+      pullUpLoad:true,
+
+    })
+    // scroll.on('scroll',(position)=>{
+    //   console.log(position)
+    // })
+    scroll.on("pullingUp",()=>{
+      console.log("上拉")
+      scroll.finishPullUp()
+    })
+  }
 }
 </script>
 
 <style scoped>
-
+  .wrapper{
+    height: 150px;
+    background-color: red;
+    overflow: hidden;
+  }
 </style>

@@ -5,13 +5,15 @@
         购物街
       </div>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <recommend-view :recommends="recommends"></recommend-view>
-    <feature-view></feature-view>
-    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
-    <goods-list :goods="goods[currentType].list">
 
-    </goods-list>
+    <scroll class="content" ref="scroll" :probe-type="3">
+      <home-swiper :banners="banners"></home-swiper>
+      <recommend-view :recommends="recommends"></recommend-view>
+      <feature-view></feature-view>
+      <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
+      <goods-list :goods="goods[currentType].list"></goods-list>
+    </scroll>
+    <back-top @click.native ="backTop"></back-top>
   </div>
 </template>
 
@@ -28,6 +30,9 @@ import GoodsListItem from "@/components/content/goods/GoodsListItem";
 
 import {getHomeMultidata,getHomeGoods} from "@/network/home";
 
+import Scroll from "@/components/common/scroll/Scroll";
+import BackTop from "@/components/content/backTop/BackTop";
+
 export default {
   name: "Home",
   components: {
@@ -37,7 +42,9 @@ export default {
     FeatureView,
     TabControl,
     GoodsList,
-    GoodsListItem
+    GoodsListItem,
+    Scroll,
+    BackTop
   },created() {
       this.getHomeMultidata();
       this.getHomeGoods('pop')
@@ -74,6 +81,9 @@ export default {
           this.currentType = 'sell'
           break
       }
+    },
+    backTop(){
+      this.$refs.scroll.scrollTo(0,0);
     }
   },
   data(){
@@ -94,6 +104,7 @@ export default {
 <style scoped>
 #home{
   padding-top: 44px;
+  height: 100vh;
 }
 
 .home-nav{
@@ -110,6 +121,11 @@ export default {
   position: sticky;
   top: 44px;
   z-index: 9;
+}
+
+.content{
+  height: calc(100vh - 93px);
+  overflow: hidden;
 }
 
 </style>
