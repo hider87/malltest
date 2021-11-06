@@ -30,8 +30,13 @@ export default {
       observeDOM:true,
       click:true
     })
-    this.scroll.on('pullingUp',(position)=>{
+    console.log("Hhhhhhhh")
+    this.scroll.on('scroll',(position)=>{
       console.log(position)
+    })
+    this.scroll.on('pullingUp',()=>{
+      console.log('pullingUp')
+      this.scroll.finishPullUp()
     })
   },
   methods: {
