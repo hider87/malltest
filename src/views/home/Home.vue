@@ -6,14 +6,14 @@
       </div>
     </nav-bar>
 
-    <scroll class="content" ref="scroll" :probe-type="3">
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll" @needMoreData="needMoreData(currentType)" :pull-up-load="true">
       <home-swiper :banners="banners"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
       <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
       <goods-list :goods="goods[currentType].list"></goods-list>
     </scroll>
-    <back-top @click.native ="backTop"></back-top>
+    <back-top @click.native ="backTop" v-show="isShowBackTop"></back-top>
   </div>
 </template>
 
@@ -84,6 +84,14 @@ export default {
     },
     backTop(){
       this.$refs.scroll.scrollTo(0,0);
+    },
+    contentScroll(position){
+      this.isShowBackTop = position.y < -2000?true:false
+    },
+    needMoreData(currentType){
+      console.log(currentType)
+      this.getHomeGoods(currentType)
+      this.$refs.scroll.scroll.refresh()
     }
   },
   data(){
@@ -95,7 +103,8 @@ export default {
         'new': {page:0, list: []},
         'sell': {page:0, list: []}
       },
-      currentType: 'pop'
+      currentType: 'pop',
+      isShowBackTop: false
     }
   }
 }

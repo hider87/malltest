@@ -16,6 +16,10 @@ export default {
     probeType: {
       type: Number,
       default: 0
+    },
+    pullUpLoad: {
+      type: Boolean,
+      default: false
     }
   },
   data(){
@@ -26,17 +30,24 @@ export default {
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper,{
       probeType:this.probeType,
-      pullUpLoad:true,
+      pullUpLoad:this.pullUpLoad,
       observeDOM:true,
       click:true
     })
     console.log("Hhhhhhhh")
+    // 监听滚动事件
     this.scroll.on('scroll',(position)=>{
-      console.log(position)
+      this.$emit('scroll',position)
     })
+
+    // 监听上拉事件
     this.scroll.on('pullingUp',()=>{
       console.log('pullingUp')
-      this.scroll.finishPullUp()
+      this.$emit("needMoreData")
+      setTimeout(()=>{
+        console.log("HHHHHHH")
+        this.scroll.finishPullUp()
+      },700)
     })
   },
   methods: {
