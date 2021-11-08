@@ -18,6 +18,7 @@
 </template>
 
 <script>
+
 import NavBar from "@/components/common/navbar/NavBar";
 import HomeSwiper from "@/views/home/childComps/HomeSwiper";
 import RecommendView from "@/views/home/childComps/RecommendView";
@@ -51,6 +52,13 @@ export default {
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
   },
+  mounted() {
+    this.$bus.$on('itemImageLoad',()=>{
+      // console.log('-----------------');
+      // this.$refs.scroll.scroll.refresh()
+      this.scroll && this.$refs.scroll.scroll.refresh();
+    })
+  },
   methods: {
     getHomeMultidata(){
       // 请求多个数据
@@ -65,11 +73,9 @@ export default {
       getHomeGoods(type,page).then(res=>{
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page +=1;
-        console.log(this.goods)
       })
     },
     tabClick(index){
-      console.log(index);
       switch (index){
         case 0:
           this.currentType = 'pop'
@@ -89,9 +95,17 @@ export default {
       this.isShowBackTop = position.y < -2000?true:false
     },
     needMoreData(currentType){
-      console.log(currentType)
       this.getHomeGoods(currentType)
-      this.$refs.scroll.scroll.refresh()
+      this.$refs.scroll&&this.$refs.scroll.scroll.refresh()
+    },
+    debounce(func,delay){
+      let timer = null;
+      return function (...args){
+        clearInterval(timer)
+        timer = setTimeout(()=>{
+          func.apply(this,args)
+        },delay)
+      }
     }
   },
   data(){

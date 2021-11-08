@@ -32,9 +32,12 @@ export default {
       probeType:this.probeType,
       pullUpLoad:this.pullUpLoad,
       observeDOM:true,
-      click:true
+      observeImage:true,
+      click:true,
+      mouseWheel: true,//开启鼠标滚轮
+      disableMouse: false,//启用鼠标拖动
+      disableTouch: false//启用手指触摸
     })
-    console.log("Hhhhhhhh")
     // 监听滚动事件
     this.scroll.on('scroll',(position)=>{
       this.$emit('scroll',position)
