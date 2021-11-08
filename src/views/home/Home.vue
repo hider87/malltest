@@ -6,12 +6,14 @@
       </div>
     </nav-bar>
 
+    <tab-control class="tab-control2" :titles="['流行','新款','精选']" @tabClick="tabClick" ref="tabControl1" v-show="isTabFixed"></tab-control>
+
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll"
             @needMoreData="needMoreData(currentType)" :pull-up-load="true">
-      <home-swiper :banners="banners" @swiperImageLoad="imageLoad" :class="{fixed: isTabFixed}"></home-swiper>
+      <home-swiper :banners="banners" @swiperImageLoad="imageLoad"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
-      <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick" ref="tabControl"></tab-control>
+      <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick" ref="tabControl2"></tab-control>
       <goods-list :goods="goods[currentType].list"></goods-list>
     </scroll>
     <back-top @click.native ="backTop" v-show="isShowBackTop"></back-top>
@@ -63,8 +65,7 @@ export default {
   },
   methods: {
     imageLoad(){
-      console.log(this.$refs.tabControl.$el.offsetTop)
-      this.tabOffSetTop = this.$refs.tabControl.$el.offsetTop
+      this.tabOffSetTop = this.$refs.tabControl2.$el.offsetTop
     },
     getHomeMultidata(){
       // 请求多个数据
@@ -93,6 +94,9 @@ export default {
           this.currentType = 'sell'
           break
       }
+      this.$refs.tabControl2.currentIndex = index
+      this.$refs.tabControl1.currentIndex = index
+
     },
     backTop(){
       this.$refs.scroll.scrollTo(0,0);
@@ -102,7 +106,8 @@ export default {
 
       //  决定tabController是否吸顶(position:fixed)
 
-      this.isTabFixed = (-position.y) > this.tabOffSetTop
+      console.log(this.$refs.tabControl2.$el.clientHeight)
+      this.isTabFixed = ((-position.y) +1 * this.$refs.tabControl2.$el.clientHeight)> this.tabOffSetTop
       console.log(this.isTabFixed)
     },
     needMoreData(currentType){
@@ -129,18 +134,18 @@ export default {
 
 <style scoped>
 #home{
-  padding-top: 44px;
+  /*padding-top: 44px;*/
   height: 100vh;
 }
 
 .home-nav{
   background-color: var(--color-tint);
   color: #f6f6f6;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 9;
+  /*position: fixed;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*top: 0;*/
+  /*z-index: 9;*/
 }
 
 .tab-control{
@@ -154,11 +159,6 @@ export default {
   overflow: hidden;
 }
 
-.fixed{
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 44px;
-}
+
 
 </style>
