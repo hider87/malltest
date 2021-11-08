@@ -39,23 +39,31 @@ export default {
       disableTouch: false//启用手指触摸
     })
     // 监听滚动事件
-    this.scroll.on('scroll',(position)=>{
-      this.$emit('scroll',position)
-    })
+    if (this.probeType === 2 || this.probeType === 3){
+      this.scroll.on('scroll',(position)=>{
+        this.$emit('scroll',position)
+      })
+    }
 
     // 监听上拉事件
-    this.scroll.on('pullingUp',()=>{
-      console.log('pullingUp')
-      this.$emit("needMoreData")
-      setTimeout(()=>{
-        console.log("HHHHHHH")
-        this.scroll.finishPullUp()
-      },700)
-    })
+    if(this.pullUpLoad){
+      this.scroll.on('pullingUp',()=>{
+        console.log('pullingUp')
+        this.$emit("needMoreData")
+        setTimeout(()=>{
+          console.log("HHHHHHH")
+          this.scroll.finishPullUp()
+        },700)
+      })
+    }
   },
   methods: {
     scrollTo(x,y,time=500){
       this.scroll.scrollTo(x,y,time)
+    },
+    refresh(){
+      console.log('---------------------')
+      this.scroll && this.scroll.refresh()
     }
   }
 }

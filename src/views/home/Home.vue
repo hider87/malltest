@@ -6,11 +6,12 @@
       </div>
     </nav-bar>
 
-    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll" @needMoreData="needMoreData(currentType)" :pull-up-load="true">
-      <home-swiper :banners="banners"></home-swiper>
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll"
+            @needMoreData="needMoreData(currentType)" :pull-up-load="true">
+      <home-swiper :banners="banners" @swiperImageLoad="imageLoad" :class="{fixed: isTabFixed}"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
-      <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
+      <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick" ref="tabControl"></tab-control>
       <goods-list :goods="goods[currentType].list"></goods-list>
     </scroll>
     <back-top @click.native ="backTop" v-show="isShowBackTop"></back-top>
@@ -30,6 +31,7 @@ import GoodsList from "@/components/content/goods/GoodsList";
 import GoodsListItem from "@/components/content/goods/GoodsListItem";
 
 import {getHomeMultidata,getHomeGoods} from "@/network/home";
+import {debounce} from "@/common/utils";
 
 import Scroll from "@/components/common/scroll/Scroll";
 import BackTop from "@/components/content/backTop/BackTop";
@@ -53,13 +55,17 @@ export default {
       this.getHomeGoods('sell')
   },
   mounted() {
+    const refresh = debounce(this.$refs.scroll.refresh)
     this.$bus.$on('itemImageLoad',()=>{
-      // console.log('-----------------');
-      // this.$refs.scroll.scroll.refresh()
-      this.scroll && this.$refs.scroll.scroll.refresh();
+      refresh();
     })
+    // 所有的组件都有一个属性$el:用于获取组件中的元素
   },
   methods: {
+    imageLoad(){
+      console.log(this.$refs.tabControl.$el.offsetTop)
+      this.tabOffSetTop = this.$refs.tabControl.$el.offsetTop
+    },
     getHomeMultidata(){
       // 请求多个数据
       getHomeMultidata().then(res =>{
@@ -93,19 +99,14 @@ export default {
     },
     contentScroll(position){
       this.isShowBackTop = position.y < -2000?true:false
+
+      //  决定tabController是否吸顶(position:fixed)
+
+      this.isTabFixed = (-position.y) > this.tabOffSetTop
+      console.log(this.isTabFixed)
     },
     needMoreData(currentType){
       this.getHomeGoods(currentType)
-      this.$refs.scroll&&this.$refs.scroll.scroll.refresh()
-    },
-    debounce(func,delay){
-      let timer = null;
-      return function (...args){
-        clearInterval(timer)
-        timer = setTimeout(()=>{
-          func.apply(this,args)
-        },delay)
-      }
     }
   },
   data(){
@@ -118,7 +119,9 @@ export default {
         'sell': {page:0, list: []}
       },
       currentType: 'pop',
-      isShowBackTop: false
+      isShowBackTop: false,
+      tabOffSetTop: 0,
+      isTabFixed: false
     }
   }
 }
@@ -149,6 +152,13 @@ export default {
 .content{
   height: calc(100vh - 93px);
   overflow: hidden;
+}
+
+.fixed{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 44px;
 }
 
 </style>
