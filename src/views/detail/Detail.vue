@@ -9,7 +9,7 @@
     <scroll class="content">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
-      <detail-shop-info></detail-shop-info>
+<!--      <detail-shop-info></detail-shop-info>-->
     </scroll>
   </div>
 </template>
