@@ -2,11 +2,11 @@
   <div>
     <nav-bar>
       <div slot="center" class="title">
-        <div v-for="(item,index) in titles" class="title-item"
+        <span v-for="(item,index) in titles" class="title-item"
              :class="{active:index === currentIndex}"
              @click="titleClick(index)">
           {{item}}
-        </div>
+        </span>
       </div>
     </nav-bar>
   </div>
@@ -38,7 +38,9 @@ export default {
 <style scoped>
   .title{
     display: flex;
+    font-size: 16px;
   }
+
   .title-item{
     flex: 1;
   }
