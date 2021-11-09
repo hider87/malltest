@@ -6,6 +6,8 @@
       </div>
       <detail-nav-bar slot="center"></detail-nav-bar>
     </nav-bar>
+    <detail-swiper :top-images="topImages"></detail-swiper>
+    <detail-base-info :goods="goods"></detail-base-info>
   </div>
 </template>
 
@@ -13,21 +15,43 @@
 
 import NavBar from "@/components/common/navbar/NavBar";
 import DetailNavBar from "@/views/detail/childComps/DetailNavBar";
+import DetailSwiper from "@/views/detail/childComps/DetailSwiper";
+import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
+
+import {getDetail,Goods} from "@/network/detail";
+
+
 
 export default {
   name: "Detail",
   components: {
+    DetailBaseInfo,
     NavBar,
-    DetailNavBar
+    DetailNavBar,
+    DetailSwiper
   },
   data(){
     return{
-      iid: null
+      iid: null,
+      topImages:[],
+      goods: null
     }
   },
   created() {
     this.iid = this.$route.params.iid
     console.log(this.iid)
+
+    getDetail(this.iid).then(res=>{
+      console.log(res);
+      const data = res.result;
+      this.topImages = data.itemInfo.topImages
+      console.log(this.topImages[0])
+      this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
+
+
+
+      console.log(this.goods)
+    })
   },
   methods: {
     backClick(){
