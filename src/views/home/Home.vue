@@ -128,11 +128,19 @@ export default {
       tabOffSetTop: 0,
       isTabFixed: false
     }
+  },
+  activated() {
+    console.log('activated')
+  },
+  deactivated() {
+    console.log("deactivated")
   }
 }
+
 </script>
 
 <style scoped>
+
 #home{
   /*padding-top: 44px;*/
   height: 100vh;
@@ -158,7 +166,5 @@ export default {
   height: calc(100vh - 93px);
   overflow: hidden;
 }
-
-
 
 </style>
