@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
   .detailSwiper{
-    height: 300px;
+    height: 350px;
     overflow: hidden;
   }
 </style>

@@ -6,8 +6,11 @@
       </div>
       <detail-nav-bar slot="center"></detail-nav-bar>
     </nav-bar>
-    <detail-swiper :top-images="topImages"></detail-swiper>
-    <detail-base-info :goods="goods"></detail-base-info>
+    <scroll class="content">
+      <detail-swiper :top-images="topImages"></detail-swiper>
+      <detail-base-info :goods="goods"></detail-base-info>
+      <detail-shop-info></detail-shop-info>
+    </scroll>
   </div>
 </template>
 
@@ -17,6 +20,8 @@ import NavBar from "@/components/common/navbar/NavBar";
 import DetailNavBar from "@/views/detail/childComps/DetailNavBar";
 import DetailSwiper from "@/views/detail/childComps/DetailSwiper";
 import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
+import Scroll from "@/components/common/scroll/Scroll";
+import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
 
 import {getDetail,Goods} from "@/network/detail";
 
@@ -28,7 +33,9 @@ export default {
     DetailBaseInfo,
     NavBar,
     DetailNavBar,
-    DetailSwiper
+    DetailSwiper,
+    Scroll,
+    DetailShopInfo
   },
   data(){
     return{
@@ -64,5 +71,14 @@ export default {
 <style scoped>
   .back img{
     margin-top: 12px;
+  }
+  #detail {
+    position: relative;
+    z-index: 9;
+    background-color: #fff;
+  }
+
+  .content{
+    height: calc(100vh - 44px);
   }
 </style>
