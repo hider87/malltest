@@ -9,7 +9,7 @@
     <scroll class="content">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
-<!--      <detail-shop-info></detail-shop-info>-->
+      <detail-shop-info :shop="shop"></detail-shop-info>
     </scroll>
   </div>
 </template>
@@ -23,7 +23,7 @@ import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
 import Scroll from "@/components/common/scroll/Scroll";
 import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
 
-import {getDetail,Goods} from "@/network/detail";
+import {getDetail,Goods,Shop} from "@/network/detail";
 
 
 
@@ -41,7 +41,8 @@ export default {
     return{
       iid: null,
       topImages:[],
-      goods: null
+      goods: null,
+      shop:null
     }
   },
   created() {
@@ -55,6 +56,7 @@ export default {
       console.log(this.topImages[0])
       this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
 
+      this.shop = new Shop(data.shopInfo)
 
 
       console.log(this.goods)
