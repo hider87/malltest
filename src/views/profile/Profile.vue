@@ -108,6 +108,7 @@
 </template>
 
 <script>
+
 import Scroll from "@/components/common/scroll/Scroll";
 
 export default {
@@ -116,6 +117,7 @@ export default {
     Scroll
   }
 }
+
 </script>
 
 <style scoped>
