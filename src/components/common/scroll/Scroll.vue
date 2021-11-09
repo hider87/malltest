@@ -36,7 +36,8 @@ export default {
       click:true,
       mouseWheel: true,//开启鼠标滚轮
       disableMouse: false,//启用鼠标拖动
-      disableTouch: false//启用手指触摸
+      disableTouch: false,//启用手指触摸
+      keepAlive:true
     })
     // 监听滚动事件
     if (this.probeType === 2 || this.probeType === 3){
@@ -48,10 +49,8 @@ export default {
     // 监听上拉事件
     if(this.pullUpLoad){
       this.scroll.on('pullingUp',()=>{
-        console.log('pullingUp')
         this.$emit("needMoreData")
         setTimeout(()=>{
-          console.log("HHHHHHH")
           this.scroll.finishPullUp()
         },700)
       })
@@ -62,7 +61,6 @@ export default {
       this.scroll.scrollTo(x,y,time)
     },
     refresh(){
-      console.log('---------------------')
       this.scroll && this.scroll.refresh()
     }
   }

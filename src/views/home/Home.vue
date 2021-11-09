@@ -70,7 +70,6 @@ export default {
     getHomeMultidata(){
       // 请求多个数据
       getHomeMultidata().then(res =>{
-        console.log(res)
         this.banners = res.data.banner.list,
           this.recommends = res.data.recommend.list;
       })
@@ -106,9 +105,7 @@ export default {
 
       //  决定tabController是否吸顶(position:fixed)
 
-      console.log(this.$refs.tabControl2.$el.clientHeight)
       this.isTabFixed = ((-position.y) +1 * this.$refs.tabControl2.$el.clientHeight)> this.tabOffSetTop
-      console.log(this.isTabFixed)
     },
     needMoreData(currentType){
       this.getHomeGoods(currentType)
@@ -126,15 +123,20 @@ export default {
       currentType: 'pop',
       isShowBackTop: false,
       tabOffSetTop: 0,
-      isTabFixed: false
+      isTabFixed: false,
+      saveY:0
     }
   },
-  activated() {
-    console.log('activated')
-  },
-  deactivated() {
-    console.log("deactivated")
-  }
+  // activated() {
+  //   this.$refs.scroll.refresh()
+  //   this.$refs.scroll.scrollTo(0,this.saveY,0);
+  //   console.log('activated')
+  // },
+  // deactivated() {
+  //   this.saveY = this.$refs.scroll.scroll.y;
+  //   console.log(this.saveY = this.$refs.scroll.scroll.y);
+  //   console.log("deactivated")
+  // }
 }
 
 </script>
