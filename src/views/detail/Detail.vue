@@ -41,8 +41,8 @@ export default {
     return{
       iid: null,
       topImages:[],
-      goods: null,
-      shop:null
+      goods: {},
+      shop:{}
     }
   },
   created() {
