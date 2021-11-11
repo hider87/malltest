@@ -6,10 +6,11 @@
       </div>
       <detail-nav-bar slot="center"></detail-nav-bar>
     </nav-bar>
-    <scroll class="content">
+    <scroll class="content" ref="scroll">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
+      <detail-goods-info :goods="goodsDetail" @imageLoad="imageLoad"></detail-goods-info>
     </scroll>
   </div>
 </template>
@@ -22,6 +23,7 @@ import DetailSwiper from "@/views/detail/childComps/DetailSwiper";
 import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
 import Scroll from "@/components/common/scroll/Scroll";
 import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
+import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
 
 import {getDetail,Goods,Shop} from "@/network/detail";
 
@@ -35,14 +37,16 @@ export default {
     DetailNavBar,
     DetailSwiper,
     Scroll,
-    DetailShopInfo
+    DetailShopInfo,
+    DetailGoodsInfo
   },
   data(){
     return{
       iid: null,
       topImages:[],
       goods: {},
-      shop:{}
+      shop:{},
+      goodsDetail:{}
     }
   },
   created() {
@@ -58,6 +62,10 @@ export default {
 
       this.shop = new Shop(data.shopInfo)
 
+      this.goodsDetail = data.detailInfo
+
+
+      console.log(this.goodsDetail)
 
       console.log(this.goods)
     })
@@ -65,6 +73,9 @@ export default {
   methods: {
     backClick(){
       this.$router.back()
+    },
+    imageLoad(){
+      this.$refs.scroll.refresh()
     }
   }
 }
