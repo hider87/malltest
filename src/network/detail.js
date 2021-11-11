@@ -33,3 +33,12 @@ export class Shop{
     this.score = shopInfo.score
   }
 }
+
+
+export class Param{
+  constructor(info,rule) {
+    this.infos = info.set
+    this.sizes = rule.tables
+    this.image = info.images ? info.images[0] : '';
+  }
+}

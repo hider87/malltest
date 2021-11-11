@@ -11,6 +11,7 @@
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
       <detail-goods-info :goods="goodsDetail" @imageLoad="imageLoad"></detail-goods-info>
+      <detail-goods-param :param-info="param"></detail-goods-param>
     </scroll>
   </div>
 </template>
@@ -24,8 +25,9 @@ import DetailBaseInfo from "@/views/detail/childComps/DetailBaseInfo";
 import Scroll from "@/components/common/scroll/Scroll";
 import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
 import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
+import DetailGoodsParam from "@/views/detail/childComps/DetailGoodsParam";
 
-import {getDetail,Goods,Shop} from "@/network/detail";
+import {getDetail,Goods,Shop,Param} from "@/network/detail";
 
 
 
@@ -38,7 +40,8 @@ export default {
     DetailSwiper,
     Scroll,
     DetailShopInfo,
-    DetailGoodsInfo
+    DetailGoodsInfo,
+    DetailGoodsParam
   },
   data(){
     return{
@@ -46,7 +49,8 @@ export default {
       topImages:[],
       goods: {},
       shop:{},
-      goodsDetail:{}
+      goodsDetail:{},
+      param: {}
     }
   },
   created() {
@@ -64,10 +68,16 @@ export default {
 
       this.goodsDetail = data.detailInfo
 
+      // 商品参数
+      this.param = new Param(data.itemParams.info,data.itemParams.rule)
 
-      console.log(this.goodsDetail)
 
-      console.log(this.goods)
+      // console.log(data.itemParams.info)
+      console.log(data.itemParams.tables[0])
+
+      // console.log(this.goodsDetail)
+      //
+      // console.log(this.goods)
     })
   },
   methods: {
