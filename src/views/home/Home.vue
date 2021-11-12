@@ -33,7 +33,8 @@ import GoodsList from "@/components/content/goods/GoodsList";
 import GoodsListItem from "@/components/content/goods/GoodsListItem";
 
 import {getHomeMultidata,getHomeGoods} from "@/network/home";
-import {debounce} from "@/common/utils";
+
+import {itemListenerMixin} from "@/common/mixin"
 
 import Scroll from "@/components/common/scroll/Scroll";
 import BackTop from "@/components/content/backTop/BackTop";
@@ -56,11 +57,12 @@ export default {
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
   },
+  mixins: [itemListenerMixin],
   mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh)
-    this.$bus.$on('itemImageLoad',()=>{
-      refresh();
-    })
+    // const refresh = debounce(this.$refs.scroll.refresh)
+    // this.$bus.$on('itemImageLoad',()=>{
+    //   refresh();
+    // })
     // 所有的组件都有一个属性$el:用于获取组件中的元素
   },
   methods: {
@@ -124,7 +126,8 @@ export default {
       isShowBackTop: false,
       tabOffSetTop: 0,
       isTabFixed: false,
-      saveY:0
+      saveY:0,
+
     }
   },
   // activated() {
@@ -137,6 +140,11 @@ export default {
   //   console.log(this.saveY = this.$refs.scroll.scroll.y);
   //   console.log("deactivated")
   // }
+  deactivated() {
+    // this.$bus.$off("imageLoad",this.newRefresh);
+    this.$bus.$off("imageLoad",this.itemListen)
+    console.log("hhhhhhh")
+  }
 }
 
 </script>

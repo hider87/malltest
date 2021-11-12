@@ -14,11 +14,11 @@
     <div class="info-detail">
       <p>{{commentInfo.content}}</p>
       <div class="info-detail-other">
-        <span>2018-08-09</span>
+        <span>{{commentInfo.created | showDate}}</span>
         <span class="span02">{{commentInfo.style}}</span>
       </div>
       <div class="info-imgs">
-        <img :src="item" v-for="(item, index) in commentInfo.images">
+        <img :src="item" v-for="(item,index) in commentInfo.images">
       </div>
     </div>
   </div>
@@ -33,10 +33,7 @@ export default {
   name: "DetailCommentInfo",
   props: {
     commentInfo: {
-      type: Object,
-      default(){
-        return {}
-      }
+      type: Object
     }
   },
   filters: {
@@ -85,7 +82,7 @@ export default {
     margin-top: 8px;
     padding-left: 20px;
     margin-bottom: 20px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
   }
   .info-detail span {
     font-size: 14px;

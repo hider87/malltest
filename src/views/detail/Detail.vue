@@ -13,6 +13,8 @@
       <detail-goods-info :goods="goodsDetail" @imageLoad="imageLoad"></detail-goods-info>
       <detail-goods-param :param-info="param"></detail-goods-param>
       <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
+      <div class="recommendInfo"><span>热门推荐</span></div>
+      <GoodsList :goods="recommend"></GoodsList>
     </scroll>
   </div>
 </template>
@@ -28,8 +30,11 @@ import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
 import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
 import DetailGoodsParam from "@/views/detail/childComps/DetailGoodsParam";
 import DetailCommentInfo from "@/views/detail/childComps/DetailCommentInfo";
+import GoodsList from "@/components/content/goods/GoodsList";
 
-import {getDetail,Goods,Shop,Param} from "@/network/detail";
+import {getDetail,Goods,Shop,Param,getRecommend} from "@/network/detail";
+import {itemListenerMixin} from "@/common/mixin"
+
 
 
 
@@ -44,7 +49,8 @@ export default {
     DetailShopInfo,
     DetailGoodsInfo,
     DetailGoodsParam,
-    DetailCommentInfo
+    DetailCommentInfo,
+    GoodsList
   },
   data(){
     return{
@@ -54,9 +60,11 @@ export default {
       shop:{},
       goodsDetail:{},
       param: {},
-      commentInfo: {}
+      commentInfo: {},
+      recommend: []
     }
   },
+  mixins: [itemListenerMixin],
   created() {
     this.iid = this.$route.params.iid
     console.log(this.iid)
@@ -81,6 +89,11 @@ export default {
         console.log(this.commentInfo)
       }
     })
+
+    getRecommend().then(res => {
+      this.recommend = res.data.list;
+      console.log(typeof  this.recommend)
+    })
   },
   methods: {
     backClick(){
@@ -89,6 +102,9 @@ export default {
     imageLoad(){
       this.$refs.scroll.refresh()
     }
+  },
+  destroyed() {
+    this.$bus.$off("itemImage",this.itemListen);
   }
 }
 </script>
@@ -105,5 +121,15 @@ export default {
 
   .content{
     height: calc(100vh - 44px);
+  }
+  .recommendInfo span{
+    position: relative;
+    left: 5px;
+  }
+  .recommendInfo {
+    margin-top: 3px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(0,0,0,.1);
   }
 </style>
