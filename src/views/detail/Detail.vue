@@ -12,6 +12,7 @@
       <detail-shop-info :shop="shop"></detail-shop-info>
       <detail-goods-info :goods="goodsDetail" @imageLoad="imageLoad"></detail-goods-info>
       <detail-goods-param :param-info="param"></detail-goods-param>
+      <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
     </scroll>
   </div>
 </template>
@@ -26,6 +27,7 @@ import Scroll from "@/components/common/scroll/Scroll";
 import DetailShopInfo from "@/views/detail/childComps/DetailShopInfo";
 import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
 import DetailGoodsParam from "@/views/detail/childComps/DetailGoodsParam";
+import DetailCommentInfo from "@/views/detail/childComps/DetailCommentInfo";
 
 import {getDetail,Goods,Shop,Param} from "@/network/detail";
 
@@ -41,7 +43,8 @@ export default {
     Scroll,
     DetailShopInfo,
     DetailGoodsInfo,
-    DetailGoodsParam
+    DetailGoodsParam,
+    DetailCommentInfo
   },
   data(){
     return{
@@ -50,7 +53,8 @@ export default {
       goods: {},
       shop:{},
       goodsDetail:{},
-      param: {}
+      param: {},
+      commentInfo: {}
     }
   },
   created() {
@@ -71,13 +75,11 @@ export default {
       // 商品参数
       this.param = new Param(data.itemParams.info,data.itemParams.rule)
 
-
-      // console.log(data.itemParams.info)
-      console.log(data.itemParams.tables[0])
-
-      // console.log(this.goodsDetail)
-      //
-      // console.log(this.goods)
+      // 评论信息
+      if(data.rate.cRate !== 0){
+        this.commentInfo = data.rate.list[0]
+        console.log(this.commentInfo)
+      }
     })
   },
   methods: {
