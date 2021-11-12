@@ -17,6 +17,9 @@
         <span>2018-08-09</span>
         <span class="span02">{{commentInfo.style}}</span>
       </div>
+      <div class="info-imgs">
+        <img :src="item" v-for="(item, index) in commentInfo.images">
+      </div>
     </div>
   </div>
 </template>
@@ -95,5 +98,24 @@ export default {
   .span02 {
     position: relative;
     right: -5px;
+  }
+
+  .commentImages {
+    display: flex;
+  }
+
+  .commentImages img{
+    width: 40px;
+  }
+
+
+  .info-imgs {
+    margin-top: 10px;
+  }
+
+  .info-imgs img {
+    width: 70px;
+    height: 70px;
+    margin-right: 5px;
   }
 </style>
