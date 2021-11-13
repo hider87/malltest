@@ -35,6 +35,7 @@ import GoodsList from "@/components/content/goods/GoodsList";
 
 import {getDetail,Goods,Shop,Param,getRecommend} from "@/network/detail";
 import {itemListenerMixin} from "@/common/mixin"
+import {debounce} from "@/common/utils";
 
 
 
@@ -63,7 +64,8 @@ export default {
       param: {},
       commentInfo: {},
       recommend: [],
-      to:[]
+      to:[],
+      getTheme: null
     }
   },
   mixins: [itemListenerMixin],
@@ -92,12 +94,13 @@ export default {
       }
 
       this.$nextTick(()=>{
-        this.to = []
-        this.to.push(0)
-        this.to.push(-1 * this.$refs.param01.$el.offsetTop + 44)
-        this.to.push(-1 * this.$refs.comment01.$el.offsetTop + 44)
-        this.to.push(-1 * this.$refs.recommend01.$el.offsetTop + 44 + 45)
-        console.log(this.to)
+        // 根据最新的数据，对应的DOM是已经被渲染出来
+        // 但是图片依然是没有加载完。
+        // this.to = []
+        // this.to.push(0)
+        // this.to.push(-1 * this.$refs.param01.$el.offsetTop + 44)
+        // this.to.push(-1 * this.$refs.comment01.$el.offsetTop + 44)
+        // this.to.push(-1 * this.$refs.recommend01.$el.offsetTop + 44 + 45)
       })
     })
 
@@ -109,6 +112,15 @@ export default {
     this.$nextTick(()=>{
 
     })
+
+
+    this.getTheme = debounce(()=> {
+      this.to = []
+      this.to.push(0)
+      this.to.push(-1 * this.$refs.param01.$el.offsetTop + 44)
+      this.to.push(-1 * this.$refs.comment01.$el.offsetTop + 44)
+      this.to.push(-1 * this.$refs.recommend01.$el.offsetTop + 44 + 45)
+    })
   },
   methods: {
     backClick(){
@@ -116,6 +128,7 @@ export default {
     },
     imageLoad(){
       this.$refs.scroll.refresh()
+      this.getTheme()
     },
     // 点击图片就跳到对应的theme中
     itemClick(index){
@@ -123,6 +136,7 @@ export default {
     },
     scroll(position){
       // 判断的次数太多了
+      this.$refs.scroll.refresh()
       if(position.y <= this.to[0] && position.y > this.to[1]){
         this.$refs.detailNav.currentIndex = 0;
       }else if(position.y <= this.to[1] && position.y > this.to[2]){
