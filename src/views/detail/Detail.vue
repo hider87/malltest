@@ -4,17 +4,18 @@
       <div slot="left" class="back" @click="backClick">
         <img src="~@/assets/img/common/back.svg">
       </div>
-      <detail-nav-bar slot="center"></detail-nav-bar>
+      <detail-nav-bar slot="center" @itemClick="itemClick" ref="detailNav"></detail-nav-bar>
     </nav-bar>
-    <scroll class="content" ref="scroll">
+
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="scroll">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
       <detail-goods-info :goods="goodsDetail" @imageLoad="imageLoad"></detail-goods-info>
-      <detail-goods-param :param-info="param"></detail-goods-param>
-      <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
-      <div class="recommendInfo"><span>热门推荐</span></div>
-      <GoodsList :goods="recommend"></GoodsList>
+      <detail-goods-param :param-info="param" ref="param01"></detail-goods-param>
+      <detail-comment-info :comment-info="commentInfo" ref="comment01"></detail-comment-info>
+      <div class="recommendInfo" ><span>热门推荐</span></div>
+      <GoodsList :goods="recommend" ref="recommend01"></GoodsList>
     </scroll>
   </div>
 </template>
@@ -61,7 +62,8 @@ export default {
       goodsDetail:{},
       param: {},
       commentInfo: {},
-      recommend: []
+      recommend: [],
+      to:[]
     }
   },
   mixins: [itemListenerMixin],
@@ -70,10 +72,11 @@ export default {
     console.log(this.iid)
 
     getDetail(this.iid).then(res=>{
-      console.log(res);
+
       const data = res.result;
+
       this.topImages = data.itemInfo.topImages
-      console.log(this.topImages[0])
+
       this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
 
       this.shop = new Shop(data.shopInfo)
@@ -86,13 +89,25 @@ export default {
       // 评论信息
       if(data.rate.cRate !== 0){
         this.commentInfo = data.rate.list[0]
-        console.log(this.commentInfo)
       }
+
+      this.$nextTick(()=>{
+        this.to = []
+        this.to.push(0)
+        this.to.push(-1 * this.$refs.param01.$el.offsetTop + 44)
+        this.to.push(-1 * this.$refs.comment01.$el.offsetTop + 44)
+        this.to.push(-1 * this.$refs.recommend01.$el.offsetTop + 44 + 45)
+        console.log(this.to)
+      })
     })
 
     getRecommend().then(res => {
       this.recommend = res.data.list;
       console.log(typeof  this.recommend)
+    })
+
+    this.$nextTick(()=>{
+
     })
   },
   methods: {
@@ -101,6 +116,22 @@ export default {
     },
     imageLoad(){
       this.$refs.scroll.refresh()
+    },
+    // 点击图片就跳到对应的theme中
+    itemClick(index){
+      this.$refs.scroll.scrollTo(0,this.to[index],500)
+    },
+    scroll(position){
+      // 判断的次数太多了
+      if(position.y <= this.to[0] && position.y > this.to[1]){
+        this.$refs.detailNav.currentIndex = 0;
+      }else if(position.y <= this.to[1] && position.y > this.to[2]){
+        this.$refs.detailNav.currentIndex = 1;
+      }else if(position.y <= this.to[2] && position.y > this.to[3]){
+        this.$refs.detailNav.currentIndex = 2;
+      }else if(position.y <= this.to[3]){
+        this.$refs.detailNav.currentIndex = 3;
+      }
     }
   },
   destroyed() {

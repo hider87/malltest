@@ -97,9 +97,9 @@ export default {
     right: -5px;
   }
 
-  .commentImages {
-    display: flex;
-  }
+  /*.commentImages {*/
+  /*  display: flex;*/
+  /*}*/
 
   .commentImages img{
     width: 40px;
