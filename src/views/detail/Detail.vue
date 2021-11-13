@@ -17,6 +17,7 @@
       <div class="recommendInfo" ><span>热门推荐</span></div>
       <GoodsList :goods="recommend" ref="recommend01"></GoodsList>
     </scroll>
+    <detail-bottom-bar></detail-bottom-bar>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
 import DetailGoodsParam from "@/views/detail/childComps/DetailGoodsParam";
 import DetailCommentInfo from "@/views/detail/childComps/DetailCommentInfo";
 import GoodsList from "@/components/content/goods/GoodsList";
+import DetailBottomBar from "@/views/detail/childComps/DetailBottomBar";
 
 import {getDetail,Goods,Shop,Param,getRecommend} from "@/network/detail";
 import {itemListenerMixin} from "@/common/mixin"
@@ -52,7 +54,8 @@ export default {
     DetailGoodsInfo,
     DetailGoodsParam,
     DetailCommentInfo,
-    GoodsList
+    GoodsList,
+    DetailBottomBar
   },
   data(){
     return{
