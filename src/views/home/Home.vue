@@ -34,10 +34,10 @@ import GoodsListItem from "@/components/content/goods/GoodsListItem";
 
 import {getHomeMultidata,getHomeGoods} from "@/network/home";
 
-import {itemListenerMixin} from "@/common/mixin"
+import {itemListenerMixin,backTopMixin} from "@/common/mixin"
 
 import Scroll from "@/components/common/scroll/Scroll";
-import BackTop from "@/components/content/backTop/BackTop";
+// import BackTop from "@/components/content/backTop/BackTop";
 
 export default {
   name: "Home",
@@ -49,15 +49,14 @@ export default {
     TabControl,
     GoodsList,
     GoodsListItem,
-    Scroll,
-    BackTop
+    Scroll
   },created() {
       this.getHomeMultidata();
       this.getHomeGoods('pop')
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
   },
-  mixins: [itemListenerMixin],
+  mixins: [itemListenerMixin,backTopMixin],
   mounted() {
     // const refresh = debounce(this.$refs.scroll.refresh)
     // this.$bus.$on('itemImageLoad',()=>{
@@ -99,11 +98,9 @@ export default {
       this.$refs.tabControl1.currentIndex = index
 
     },
-    backTop(){
-      this.$refs.scroll.scrollTo(0,0);
-    },
     contentScroll(position){
-      this.isShowBackTop = position.y < -2000?true:false
+      // this.isShowBackTop = position.y < -2000?true:false
+      this.listenShow(position)
 
       //  决定tabController是否吸顶(position:fixed)
 

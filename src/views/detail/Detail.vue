@@ -17,7 +17,8 @@
       <div class="recommendInfo" ><span>热门推荐</span></div>
       <GoodsList :goods="recommend" ref="recommend01"></GoodsList>
     </scroll>
-    <detail-bottom-bar></detail-bottom-bar>
+    <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
+    <back-top @click.native ="backTop" v-show="isShowBackTop"></back-top>
   </div>
 </template>
 
@@ -36,7 +37,7 @@ import GoodsList from "@/components/content/goods/GoodsList";
 import DetailBottomBar from "@/views/detail/childComps/DetailBottomBar";
 
 import {getDetail,Goods,Shop,Param,getRecommend} from "@/network/detail";
-import {itemListenerMixin} from "@/common/mixin"
+import {itemListenerMixin,backTopMixin} from "@/common/mixin"
 import {debounce} from "@/common/utils";
 
 
@@ -71,7 +72,7 @@ export default {
       getTheme: null
     }
   },
-  mixins: [itemListenerMixin],
+  mixins: [itemListenerMixin,backTopMixin],
   created() {
     this.iid = this.$route.params.iid
     console.log(this.iid)
@@ -112,6 +113,7 @@ export default {
       console.log(typeof  this.recommend)
     })
 
+    //下一帧
     this.$nextTick(()=>{
 
     })
@@ -149,6 +151,16 @@ export default {
       }else if(position.y <= this.to[3]){
         this.$refs.detailNav.currentIndex = 3;
       }
+      this.listenShow(position)
+    },
+    addToCart(){
+      const product = {}
+      product.iid = this.iid;
+      product.imgURL = this.topImages[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc;
+      product.newPrice = this.goods.realPrice;
+      this.$store.commit("addCart",product)
     }
   },
   destroyed() {
@@ -168,7 +180,7 @@ export default {
   }
 
   .content{
-    height: calc(100vh - 44px);
+    height: calc(100vh - 44px - 58px);
   }
   .recommendInfo span{
     position: relative;
