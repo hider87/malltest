@@ -1,22 +1,32 @@
 <template>
-  <div>
-    <h2>购物车</h2>
-    <back-top></back-top>
+  <div class="cart">
+    <NavBar class="cart-nav">
+      <div slot="center" class="cart-bar">购物车({{getLength}})</div>
+    </NavBar>
   </div>
 </template>
 
 <script>
 
-import BackTop from "@/components/content/backTop/BackTop";
+import NavBar from "@/components/common/navbar/NavBar";
+import {mapGetters} from "vuex"
 
 export default {
   name: "Cart",
   components:{
-    BackTop
+    NavBar
+  },
+  // 还是要多看文档
+  computed: {
+    ...mapGetters(['getLength'])
   }
 }
 </script>
 
 <style scoped>
-
+  .cart-nav{
+    background-color: var(--color-tint);
+    color: #f6f6f6;
+    /*font-weight: 800;*/
+  }
 </style>

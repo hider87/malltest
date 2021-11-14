@@ -159,7 +159,9 @@ export default {
       product.title = this.goods.title
       product.desc = this.goods.desc;
       product.newPrice = this.goods.realPrice;
-      this.$store.commit("addCart",product)
+      // mutations中是这样使用
+      // this.$store.commit("addCart",product)
+      this.$store.dispatch("addCart",product)
     }
   },
   destroyed() {

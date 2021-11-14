@@ -7,14 +7,14 @@
         首页
       </div>
     </tab-bar-item>
-    <tab-bar-item path="/cart">
+    <tab-bar-item path="/category">
       <img slot="item-icon" src="@/assets/img/category/category.svg">
       <img slot="item-icon-active" src="@/assets/img/category/category_active.svg">
       <div slot="item-text">
         分类
       </div>
     </tab-bar-item>
-    <tab-bar-item path="/category">
+    <tab-bar-item path="/cart">
       <img slot="item-icon" src="@/assets/img/cart/cart.svg">
       <img slot="item-icon-active" src="@/assets/img/cart/cart_active.svg">
       <div slot="item-text">
