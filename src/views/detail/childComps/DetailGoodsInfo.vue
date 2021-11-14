@@ -1,5 +1,5 @@
 <template>
-  <div class="detail">
+  <div class="detail" v-if="Object.keys(goods).length !== 0">
     <div class="descDetail">
       {{goods.desc}}
     </div>
