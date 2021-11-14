@@ -6,7 +6,6 @@
       </div>
       <detail-nav-bar slot="center" @itemClick="itemClick" ref="detailNav"></detail-nav-bar>
     </nav-bar>
-
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="scroll">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>

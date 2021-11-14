@@ -12,7 +12,14 @@ const store = new Vuex.Store({
   },
   mutations: {
     addCart(state,product){
-      state.cartList.push(product)
+      // 找到的是旧的
+      const sample = state.cartList.find((item)=>item.iid === product.iid);
+      if(sample){
+        sample.count += 1;
+      }else{
+        product.count = 1;
+        state.cartList.push(product)
+      }
     }
   },
   modules: {
