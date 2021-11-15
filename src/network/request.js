@@ -16,6 +16,7 @@ export function request(config){
   },error => {
       console.log(error)
   })
+
   return instance(config)
 }
 

@@ -14,7 +14,6 @@ export const itemListenerMixin = {
     }
     this.itemListen = newRefresh;
     this.$bus.$on('itemImageLoad',newRefresh)
-    console.log("min")
   }
 }
 

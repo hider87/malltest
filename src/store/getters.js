@@ -3,5 +3,8 @@ export default {
   // 并且无法devtools无法跟踪状态的变化
   getLength(state){
     return state.cartList.length;
+  },
+  cartList(state){
+    return state.cartList
   }
 }

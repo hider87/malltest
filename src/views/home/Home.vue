@@ -140,7 +140,6 @@ export default {
   deactivated() {
     // this.$bus.$off("imageLoad",this.newRefresh);
     this.$bus.$off("imageLoad",this.itemListen)
-    console.log("hhhhhhh")
   }
 }
 

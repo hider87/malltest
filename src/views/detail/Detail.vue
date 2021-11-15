@@ -74,7 +74,6 @@ export default {
   mixins: [itemListenerMixin,backTopMixin],
   created() {
     this.iid = this.$route.params.iid
-    console.log(this.iid)
 
     getDetail(this.iid).then(res=>{
 
@@ -109,7 +108,6 @@ export default {
 
     getRecommend().then(res => {
       this.recommend = res.data.list;
-      console.log(typeof  this.recommend)
     })
 
     //下一帧
