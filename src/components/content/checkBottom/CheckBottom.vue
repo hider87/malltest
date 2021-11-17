@@ -10,20 +10,23 @@ export default {
   props: {
     isActive: {
       type: Boolean,
-      default: true
+      default: false
     }
+  },
+  methods: {
+
   }
 }
 </script>
 
 <style scoped>
   .check {
-    background-color: red;
     border-radius: 50%;
     border:3px solid #aaa
   }
 
   .active{
+    background-color: red;
     border-color: red;
   }
 

@@ -2,7 +2,7 @@
   <div>
     <div v-for="item in cartList" id="shop-item">
       <div class="item-selector">
-        <check-bottom></check-bottom>
+        <check-bottom :is-active="item.checked" @click.native="item.checked=!item.checked"></check-bottom>
       </div>
       <div class="item-img">
         <img :src="item.imgURL" alt="商品图片">

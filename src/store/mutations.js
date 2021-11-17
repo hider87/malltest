@@ -8,6 +8,7 @@ export default {
   },
 
   [ADD_PRODUCT](state,product){
+    product.checked = true;
     state.cartList.push(product)
   }
 }
