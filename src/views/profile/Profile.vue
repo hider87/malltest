@@ -1,127 +1,112 @@
 <template>
   <div>
-      <scroll :probe-type="2" class="content">
-        <ul>
-          <li>{hhh 1}</li>
-          <li>{hhh 2}</li>
-          <li>{hhh 3}</li>
-          <li>{hhh 4}</li>
-          <li>{hhh 5}</li>
-          <li>{hhh 6}</li>
-          <li>{hhh 7}</li>
-          <li>{hhh 8}</li>
-          <li>{hhh 9}</li>
-          <li>{hhh 10}</li>
-          <li>{hhh 11}</li>
-          <li>{hhh 12}</li>
-          <li>{hhh 13}</li>
-          <li>{hhh 14}</li>
-          <li>{hhh 15}</li>
-          <li>{hhh 16}</li>
-          <li>{hhh 17}</li>
-          <li>{hhh 18}</li>
-          <li>{hhh 19}</li>
-          <li>{hhh 20}</li>
-          <li>{hhh 21}</li>
-          <li>{hhh 22}</li>
-          <li>{hhh 23}</li>
-          <li>{hhh 24}</li>
-          <li>{hhh 25}</li>
-          <li>{hhh 26}</li>
-          <li>{hhh 27}</li>
-          <li>{hhh 28}</li>
-          <li>{hhh 29}</li>
-          <li>{hhh 30}</li>
-          <li>{hhh 31}</li>
-          <li>{hhh 32}</li>
-          <li>{hhh 33}</li>
-          <li>{hhh 34}</li>
-          <li>{hhh 35}</li>
-          <li>{hhh 36}</li>
-          <li>{hhh 37}</li>
-          <li>{hhh 38}</li>
-          <li>{hhh 39}</li>
-          <li>{hhh 40}</li>
-          <li>{hhh 41}</li>
-          <li>{hhh 42}</li>
-          <li>{hhh 43}</li>
-          <li>{hhh 44}</li>
-          <li>{hhh 45}</li>
-          <li>{hhh 46}</li>
-          <li>{hhh 47}</li>
-          <li>{hhh 48}</li>
-          <li>{hhh 49}</li>
-          <li>{hhh 50}</li>
-          <li>{hhh 51}</li>
-          <li>{hhh 52}</li>
-          <li>{hhh 53}</li>
-          <li>{hhh 54}</li>
-          <li>{hhh 55}</li>
-          <li>{hhh 56}</li>
-          <li>{hhh 57}</li>
-          <li>{hhh 58}</li>
-          <li>{hhh 59}</li>
-          <li>{hhh 60}</li>
-          <li>{hhh 61}</li>
-          <li>{hhh 62}</li>
-          <li>{hhh 63}</li>
-          <li>{hhh 64}</li>
-          <li>{hhh 65}</li>
-          <li>{hhh 66}</li>
-          <li>{hhh 67}</li>
-          <li>{hhh 68}</li>
-          <li>{hhh 69}</li>
-          <li>{hhh 70}</li>
-          <li>{hhh 71}</li>
-          <li>{hhh 72}</li>
-          <li>{hhh 73}</li>
-          <li>{hhh 74}</li>
-          <li>{hhh 75}</li>
-          <li>{hhh 76}</li>
-          <li>{hhh 77}</li>
-          <li>{hhh 78}</li>
-          <li>{hhh 79}</li>
-          <li>{hhh 80}</li>
-          <li>{hhh 81}</li>
-          <li>{hhh 82}</li>
-          <li>{hhh 83}</li>
-          <li>{hhh 84}</li>
-          <li>{hhh 85}</li>
-          <li>{hhh 86}</li>
-          <li>{hhh 87}</li>
-          <li>{hhh 88}</li>
-          <li>{hhh 89}</li>
-          <li>{hhh 90}</li>
-          <li>{hhh 91}</li>
-          <li>{hhh 92}</li>
-          <li>{hhh 93}</li>
-          <li>{hhh 94}</li>
-          <li>{hhh 95}</li>
-          <li>{hhh 96}</li>
-          <li>{hhh 97}</li>
-          <li>{hhh 98}</li>
-          <li>{hhh 99}</li>
-          <li>{hhh 100}</li>
-        </ul>
-      </scroll>
+    <nav-bar class="nav-bar">
+      <div slot="center">mall商城</div>
+    </nav-bar>
+    <user-info></user-info>
+
+
+    <section class="account">
+      <div class="account-item">
+        <div class="number">
+          <span class="balance">0.00</span>元
+        </div>
+        <div class="account-info">我的余额</div>
+      </div>
+      <div class="account-item">
+        <div class="number">
+          <span class="balance">0</span>个
+        </div>
+        <div class="account-info">我的优惠</div>
+      </div>
+      <div class="account-item">
+        <div class="number">
+          <span class="balance">0</span>分
+        </div>
+        <div class="account-info">我的积分</div>
+      </div>
+    </section>
+
+    <list-view :list-data="orderList" class="order-list"></list-view>
+    <list-view :list-data="serviceList" class="service-list"></list-view>
   </div>
 </template>
 
 <script>
 
-import Scroll from "@/components/common/scroll/Scroll";
+import NavBar from "@/components/common/navbar/NavBar";
+import UserInfo from "@/views/profile/childComps/UserInfo";
+import ListView from "@/views/profile/childComps/ListView";
 
 export default {
   name: "Profile",
   components: {
-    Scroll
+    NavBar,
+    UserInfo,
+    ListView
+  },
+  data() {
+    return {
+      orderList: [
+        {icon: '#order', iconColor: '#ff8198', info: '我的消息'},
+        {icon: '#point', iconColor: '#fc7b53', info: '积分商城'},
+        {icon: '#vip', iconColor: '#ffc636', info: '会员卡'},
+      ],
+      serviceList: [
+        {icon: '#service', iconColor: '#ff8198', info: '我的购物车'},
+        {icon: '#download', iconColor: '#ff8198', info: '下载购物APP'},
+      ]
+    }
   }
 }
-
 </script>
 
 <style scoped>
-  .content{
-    height: 300px;
+  .nav-bar {
+    background-color: var(--color-tint);
+  }
+  #profile {
+    background-color: #f2f2f2;
+  }
+
+  .nav-bar {
+    background-color: var(--color-tint);
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .account {
+    display: flex;
+  }
+
+  .account-item {
+    width: 100%;
+    background-color: #fff;
+    margin-right: 1px;
+    text-align: center;
+  }
+
+  .account-item:last-of-type {
+    margin-right: 0;
+  }
+
+  .account-item {
+    color: #666;
+    font-size: 13px;
+    padding: 18px;
+  }
+
+  .account-item .balance {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff5f3e;
+  }
+
+  .account-info {
+    margin-top: 6px;
+  }
+
+  .order-list, .service-list {
+    margin-top: 12px;
   }
 </style>

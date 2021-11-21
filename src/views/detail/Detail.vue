@@ -35,9 +35,12 @@ import DetailCommentInfo from "@/views/detail/childComps/DetailCommentInfo";
 import GoodsList from "@/components/content/goods/GoodsList";
 import DetailBottomBar from "@/views/detail/childComps/DetailBottomBar";
 
+
 import {getDetail,Goods,Shop,Param,getRecommend} from "@/network/detail";
 import {itemListenerMixin,backTopMixin} from "@/common/mixin"
 import {debounce} from "@/common/utils";
+
+import {mapActions} from "vuex"
 
 
 
@@ -125,6 +128,7 @@ export default {
     })
   },
   methods: {
+    ...mapActions(['addCart']),
     backClick(){
       this.$router.back()
     },
@@ -159,7 +163,10 @@ export default {
       product.newPrice = this.goods.realPrice;
       // mutations中是这样使用
       // this.$store.commit("addCart",product)
-      this.$store.dispatch("addCart",product)
+      // this.$store.dispatch("addCart",product)
+      this.addCart(product).then(res=>{
+        this.$toast.show(res,1500);
+      })
     }
   },
   destroyed() {

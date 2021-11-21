@@ -45,7 +45,6 @@ export default {
       }
       for (let item of this.$store.state.cartList){
         if(!item.checked){
-          this.isActive = false
           return false;
         }
       }
@@ -54,20 +53,12 @@ export default {
     }
   },
   methods: {
-    /**
-     * 天才的操作的哈哈哈哈哈哈哈
-     */
     checkAll(){
       if (this.isActive){
         this.$store.state.cartList.forEach(item => item.checked = false)
       }else{
         this.$store.state.cartList.forEach(item => item.checked = true)
       }
-    }
-  },
-  data: {
-    return: {
-      active: false
     }
   }
 }
@@ -78,7 +69,6 @@ export default {
     height: 40px;
     background-color: #eee;
     position: relative;
-    /*bottom: 40px;*/
   }
 
   .check-all {
@@ -110,7 +100,6 @@ export default {
     text-align: center;
     margin-left: auto;
   }
-
 
   .one {
     margin-top: 10px;

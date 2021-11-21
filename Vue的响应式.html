@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+  1. Vue内部是如何监听message数据
+  Object.definePropert -> 监听对象属性的变化
+
+  2. 当数据发生改变，Vue中对应的属性如何发生改变
+  发布订阅者模式
+
+-->
+<div id="app">
+  {{message}}
+  {{message}}
+  {{message}}
+</div>
+
+
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "hhhh"
+    }
+  })
+</script>
+
+</body>
+</html>
